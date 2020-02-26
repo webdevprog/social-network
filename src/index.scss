@@ -1,3 +1,5 @@
+$color-bg-body: #f4f4f4;
+
 *,
 *:after,
 *:before {
@@ -11,4 +13,5 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: $color-bg-body;
 }
