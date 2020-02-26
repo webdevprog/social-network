@@ -1,7 +1,4 @@
-$color-box: #fff;
-$border-box: 1px solid #e8e8e8;
-$raduis-box: 6px;
-$shadow-default: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+@import './scss/variable';
 
 .app-wrapper {
     max-width: 1200px;
@@ -14,69 +11,4 @@ $shadow-default: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
     ;
     grid-template-columns: 2fr 10fr;
     grid-gap: 20px;
-
-    .main-header {
-        grid-area: header;
-        display: flex;
-        align-items: center;
-        padding: 20px;
-        border: $border-box;
-        border-radius: $raduis-box;
-        background-color: $color-box;
-        box-shadow: $shadow-default;
-
-        .logo {
-            width: 50px;
-        }
-    }
-}
-
-.sidebar-left {
-    grid-area: sidebar;
-    border: $border-box;
-    border-radius: $raduis-box;
-    background-color: $color-box;
-    box-shadow: $shadow-default;
-}
-
-.sidebar-left nav ul li {
-    list-style-type: none;
-}
-
-.sidebar-left nav ul li a {
-    color: black;
-    text-decoration: none;
-}
-
-.main-content {
-    grid-area: content;
-}
-
-.main-content .banner {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-}
-
-.main-content .user {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-    grid-gap: 20px;
-    padding: 20px;
-    border: $border-box;
-    border-radius: $raduis-box;
-    background-color: $color-box;
-    box-shadow: $shadow-default;
-}
-
-.main-content .user .user__avatar {
-    width: 100%;
-}
-
-.main-footer {
-    grid-area: footer;
-    border: $border-box;
-    border-radius: $raduis-box;
-    background-color: $color-box;
-    box-shadow: $shadow-default;
 }

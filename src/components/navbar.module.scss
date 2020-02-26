@@ -1,0 +1,22 @@
+@import '../scss/variable';
+
+.sidebar {
+    grid-area: sidebar;
+    border: $border-box;
+    border-radius: $raduis-box;
+    background-color: $color-box;
+    box-shadow: $shadow-default;
+
+    .nav {
+        .navList {
+            list-style-type: none;
+
+            .item {
+                a {
+                    color: black;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

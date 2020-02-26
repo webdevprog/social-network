@@ -1,0 +1,16 @@
+@import '../scss/variable';
+
+.header {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: $border-box;
+    border-radius: $raduis-box;
+    background-color: $color-box;
+    box-shadow: $shadow-default;
+
+    .logo {
+        width: 50px;
+    }
+}
