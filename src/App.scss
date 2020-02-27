@@ -12,3 +12,7 @@
     grid-template-columns: 2fr 10fr;
     grid-gap: 20px;
 }
+
+.app-wrapper-content {
+    grid-area: content;
+}

@@ -12,7 +12,8 @@ const MyPosts = () => {
                 <input type="submit" value="Send" />
             </form>
             <div className={cls.posts}>
-                <Post />
+                <Post message="Hello, everyone" countLike="3"/>
+                <Post message="Hello, everybody" countLike="8"/>
             </div>
         </div>
     );
