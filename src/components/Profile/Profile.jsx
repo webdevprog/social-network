@@ -1,6 +1,7 @@
 
 import React from 'react';
 import cls from './profile.module.scss';
+import MyPosts from './MyPosts/MyPosts';
 
 const Profile = () => {
     return (
@@ -18,21 +19,7 @@ const Profile = () => {
                     <div className={cls.website}>Web Site: none</div>
                 </div>
             </div>
-            <form className={cls.formPost} action="">
-                <legend>
-                    <h2>My posts</h2>
-                </legend>
-                <textarea placeholder="your news" name="" id="" cols="30" rows="10"></textarea>
-                <input type="submit" value="Send" />
-            </form>
-            <div>
-                <div>
-                    <img src="" alt="" />
-                    <div>
-                        Hello, everyone!
-            </div>
-                </div>
-            </div>
+            <MyPosts />
         </main>
     );
 }
