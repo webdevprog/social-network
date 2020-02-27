@@ -1,17 +1,28 @@
 
 import React from 'react';
-import classes from './navbar.module.scss';
+import cls from './navbar.module.scss';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     return (
-        <aside className={classes.sidebar}>
-            <nav className={classes.nav}>
-                <ul className={classes.navList}>
-                    <li className={classes.item}><a href="/profile">Profile</a></li>
-                    <li className={classes.item}><a href="/dialogs">Messages</a></li>
-                    <li className={classes.item}><a href="/news">News</a></li>
-                    <li className={classes.item}><a href="/music">Music</a></li>
-                    <li className={classes.item}><a href="/setting">Setting</a></li>
+        <aside className={cls.sidebar}>
+            <nav className={cls.nav}>
+                <ul className={cls.navList}>
+                    <li className={cls.item}>
+                        <NavLink to="/profile" activeClassName={cls.active}>Profile</NavLink>
+                    </li>
+                    <li className={cls.item}>
+                        <NavLink to="/dialogs" activeClassName={cls.active}>Messages</NavLink>
+                    </li>
+                    <li className={cls.item}>
+                        <NavLink to="/news" activeClassName={cls.active}>News</NavLink>
+                    </li>
+                    <li className={cls.item}>
+                        <NavLink to="/music" activeClassName={cls.active}>Music</NavLink>
+                    </li>
+                    <li className={cls.item}>
+                        <NavLink to="/setting" activeClassName={cls.active}>Setting</NavLink>
+                    </li>
                 </ul>
             </nav>
         </aside>

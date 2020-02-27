@@ -10,11 +10,28 @@
     .nav {
         .navList {
             list-style-type: none;
+            margin: 0;
+            padding: 10px;
 
             .item {
+                &:not(:last-child) {
+                    a {
+                        margin-bottom: 5px;
+                    }
+                }
+
                 a {
+                    display: block;
+                    padding: 10px;
+                    font-size: 20px;
                     color: black;
+                    border: $border-box;
+                    text-transform: uppercase;
                     text-decoration: none;
+
+                    &:hover, &.active {
+                        background-color: #f4f4f4;
+                    }
                 }
             }
         }
