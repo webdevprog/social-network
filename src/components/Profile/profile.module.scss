@@ -1,4 +1,4 @@
-@import '../scss/variable';
+@import '../../scss/variable';
 
 .content {
     grid-area: content;
@@ -16,7 +16,7 @@
     grid-gap: 20px;
     padding: 20px;
     border: $border-box;
-    border-radius: $raduis-box;
+    border-radius: $radius-box;
     background-color: $color-box;
     box-shadow: $shadow-default;
 

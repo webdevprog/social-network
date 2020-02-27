@@ -1,9 +1,9 @@
-@import '../scss/variable';
+@import '../../scss/variable';
 
 .sidebar {
     grid-area: sidebar;
     border: $border-box;
-    border-radius: $raduis-box;
+    border-radius: $radius-box;
     background-color: $color-box;
     box-shadow: $shadow-default;
 
