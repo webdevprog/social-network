@@ -2,12 +2,12 @@
 
 .sidebar {
     grid-area: sidebar;
-    border: $border-box;
-    border-radius: $radius-box;
-    background-color: $color-box;
-    box-shadow: $shadow-default;
 
     .nav {
+        border: $border-box;
+        border-radius: $radius-box;
+        background-color: $color-box;
+        box-shadow: $shadow-default;
         .navList {
             list-style-type: none;
             margin: 0;

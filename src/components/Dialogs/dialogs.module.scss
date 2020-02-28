@@ -1,1 +1,25 @@
 @import '../../scss/variable';
+
+.dialogs {
+    display: grid;
+    grid-template-columns: 3fr 10fr;
+    grid-gap: 20px;
+    padding: 20px;
+    border: $border-box;
+    border-radius: $radius-box;
+    background-color: $color-box;
+    box-shadow: $shadow-default;
+
+    @media all and (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+
+    .dialogsItem {
+        border-right: 3px solid black;
+
+        .dialog {
+            font-size: 20px;
+        }
+    }
+
+}
