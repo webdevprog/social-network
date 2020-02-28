@@ -3,7 +3,7 @@ import React from 'react';
 import cls from './myposts.module.scss';
 import Post from './Post/Post';
 
-const MyPosts = () => {
+const MyPosts = (props) => {
     return (
         <div>
             <h2>My posts</h2>
@@ -12,8 +12,11 @@ const MyPosts = () => {
                 <input type="submit" value="Send" />
             </form>
             <div className={cls.posts}>
-                <Post message="Hello, everyone" countLike="3"/>
-                <Post message="Hello, everybody" countLike="8"/>
+            {
+                props.posts.map(post => (
+                    <Post id={post.id} message={post.message} countLike={post.countLike}/>
+                ))
+            }
             </div>
         </div>
     );
