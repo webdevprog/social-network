@@ -11,14 +11,14 @@ const Dialogs = (props) => {
         <div className={cls.dialogs}>
             <div className={cls.dialogsItem}>
                 {
-                    props.diaologs.map(dialog => (
+                    props.state.diaologs.map(dialog => (
                         <DialogItem name={dialog.name} id={dialog.id} />
                     ))
                 }
             </div>
             <div className={cls.messages}>
                 {
-                    props.messages.map(message => (
+                    props.state.messages.map(message => (
                         <Message message={message.message} id={message.id} />
                     ))
                 }
