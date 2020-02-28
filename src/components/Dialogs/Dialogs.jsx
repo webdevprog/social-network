@@ -1,37 +1,39 @@
 
 import React from 'react';
 import cls from './dialogs.module.scss';
+import { NavLink } from 'react-router-dom';
 
-const Dialogs = (handelClick) => {
-    handelClick = (e) => {
-        let target = e.target;
-    
-        alert(target.textContent);
-        return target.textContent;
-    }
+const DialogItem = (props) => {
+    let path = '/dialogs/' + props.id;
+
+    return (
+        <div className={`${cls.dialog} ${cls.active}`}>
+            <NavLink to={path}>{props.name}</NavLink>
+        </div>
+    )
+}
+
+const Message = (props) => {
+    return (
+        <div className={cls.message}>
+            {props.message}
+        </div>
+    )
+}
+
+const Dialogs = () => {
+
     return (
         <div className={cls.dialogs}>
             <div className={cls.dialogsItem}>
-                <div className={cls.dialog}>
-                    Vitaliy
-                </div>
-                <div className={cls.dialog}>
-                    Sasha
-                </div>
-                <div className={cls.dialog}>
-                    Viktoria
-                </div>
+                <DialogItem name="Vitaliy" id="1" />
+                <DialogItem name="Sasha" id="2" />
+                <DialogItem name="Viktoria" id="3" />
             </div>
             <div className={cls.messages}>
-                <div className={cls.message}>
-                    hi, Vasya
-                </div>
-                <div className={cls.message}>
-                    How are you?
-                </div>
-                <div className={cls.message}>
-                    What's up man.
-                </div>
+                <Message message="hi, Vasya" />
+                <Message message="How are you?" />
+                <Message message="What's up man." />
             </div>
         </div>
     );
