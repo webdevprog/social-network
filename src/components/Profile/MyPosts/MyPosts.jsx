@@ -4,11 +4,19 @@ import cls from './myposts.module.scss';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
+
+    let textElement = React.createRef();
+    
+    let addPost = () => {
+        let text = textElement.current.value;
+        alert(text);
+    }
+
     return (
         <div>
             <h2>My posts</h2>
-            <form className={cls.formPost} action="">
-                <textarea placeholder="your news" name="" id="" cols="30" rows="10"></textarea>
+            <form className={cls.formPost} action="" onSubmit={addPost}>
+                <textarea ref={textElement} placeholder="your news" name="" id="" cols="30" rows="10"></textarea>
                 <input type="submit" value="Send" />
             </form>
             <div className={cls.posts}>

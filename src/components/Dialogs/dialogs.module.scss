@@ -19,9 +19,49 @@
 
         .dialog {
             font-size: 20px;
+            margin-bottom: 10px;
+
+            a {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+
+                .dialogImg {
+                    width: 40px;
+                    height: 40px;
+                    object-fit: cover;
+                    margin-right: 10px;
+                    border-radius: 50%;
+                }
+            }
+
             .active {
                 color: red;
             }
+        }
+    }
+
+    .message {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+        border: 1px solid #e8e8e8;
+        border-radius: 10px;
+        padding: 5px;
+        &:nth-child(2n) {
+            background-color: #e8e8e8;
+            justify-content: flex-end;
+            img {
+                order: 2;
+                margin: 0 0 0 10px;
+            }
+        }
+        img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 50%;
         }
     }
 

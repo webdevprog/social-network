@@ -2,8 +2,9 @@
 import React from 'react';
 import cls from './navbar.module.scss';
 import { NavLink } from 'react-router-dom';
+import Friend from './Friend/Friend';
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <aside className={cls.sidebar}>
             <nav className={cls.nav}>
@@ -25,6 +26,18 @@ const Navbar = () => {
                     </li>
                 </ul>
             </nav>
+            <div className="">
+                <h3>Friends</h3>
+                <div className={cls.friends}>
+                    {
+                        props.state.friends.map((friend) => (
+                            <Friend name={friend.name} img={friend.img} />
+                        ))
+                    }
+                </div>
+            </div>
+
+
         </aside>
     );
 }

@@ -8,10 +8,10 @@ let state = {
     },
     dialogsPage: {
         diaologs: [
-            { name: 'Vitaiy', id: 1 },
-            { name: 'Sasha', id: 2 },
-            { name: 'Peter', id: 3 },
-            { name: 'Katya', id: 4 },
+            { name: 'Vitaiy', id: 1, img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg' },
+            { name: 'Sasha', id: 2, img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg' },
+            { name: 'Peter', id: 3, img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg' },
+            { name: 'Katya', id: 4, img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg' },
         ],
         messages: [
             { message: "hi, Vasya", id: 1 },
@@ -20,6 +20,14 @@ let state = {
             { message: "Are you crazy?", id: 4 },
             { message: "no", id: 5 }
         ],
+    },
+    sidebar: {
+        friends: [
+            {id: 1, name: 'Valya', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg'},
+            {id: 2, name: 'Lera', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg'},
+            {id: 3, name: 'Valera', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg'},
+            {id: 4, name: 'Anna', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg'},
+        ]
     }
 };
 

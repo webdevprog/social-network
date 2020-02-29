@@ -37,3 +37,13 @@
         }
     }
 }
+
+.friends {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    border: $border-box;
+    border-radius: $radius-box;
+    background-color: $color-box;
+    box-shadow: $shadow-default;
+}
