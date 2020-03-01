@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import State from './redux/state'
+import {addPost} from './redux/state';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App state={State} />, document.getElementById('root'));
+ReactDOM.render(<App state={State} addPost={addPost} />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

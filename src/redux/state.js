@@ -31,4 +31,14 @@ let state = {
     }
 };
 
+export let addPost = ((messagePost) => {
+    let newObj = {
+        id: 5,
+        message: messagePost,
+        countLike: 4,
+    }
+
+    state.profilePage.posts.push(newObj);
+});
+
 export default state;

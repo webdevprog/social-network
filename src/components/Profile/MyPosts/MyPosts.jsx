@@ -6,10 +6,11 @@ import Post from './Post/Post';
 const MyPosts = (props) => {
 
     let textElement = React.createRef();
-    
-    let addPost = () => {
+
+    let addPost = (e) => {
+        e.preventDefault()
         let text = textElement.current.value;
-        alert(text);
+        props.addPost(text);
     }
 
     return (
@@ -20,11 +21,11 @@ const MyPosts = (props) => {
                 <input type="submit" value="Send" />
             </form>
             <div className={cls.posts}>
-            {
-                props.posts.map(post => (
-                    <Post id={post.id} message={post.message} countLike={post.countLike}/>
-                ))
-            }
+                {
+                    props.posts.map(post => (
+                        <Post id={post.id} message={post.message} countLike={post.countLike} />
+                    ))
+                }
             </div>
         </div>
     );
