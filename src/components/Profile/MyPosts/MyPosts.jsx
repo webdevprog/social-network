@@ -13,11 +13,15 @@ const MyPosts = (props) => {
         props.addPost(text);
     }
 
+    let handleChange = (e) => {
+        props.addPost(e.target.value, true);
+    }
+
     return (
         <div>
             <h2>My posts</h2>
             <form className={cls.formPost} action="" onSubmit={addPost}>
-                <textarea ref={textElement} placeholder="your news" name="" id="" cols="30" rows="10"></textarea>
+                <textarea ref={textElement} value={props.text} onChange={handleChange} placeholder="your news" name="" id="" cols="30" rows="10"></textarea>
                 <input type="submit" value="Send" />
             </form>
             <div className={cls.posts}>

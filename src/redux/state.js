@@ -1,5 +1,8 @@
+import {rerenderTree} from './../redner';
+
 let state = {
     profilePage: {
+        currentText: '',
         posts: [
             { id: 1, message: "Hello, everyone", countLike: 3 },
             { id: 2, message: "Hello, everybody", countLike: 4 },
@@ -31,14 +34,21 @@ let state = {
     }
 };
 
-export let addPost = ((messagePost) => {
+export let addPost = ((messagePost, change = false) => {
     let newObj = {
         id: 5,
         message: messagePost,
         countLike: 4,
     }
 
-    state.profilePage.posts.push(newObj);
+    if (change) {
+        state.profilePage.currentText = messagePost;
+    } else {
+        state.profilePage.posts.push(newObj);
+        state.profilePage.currentText = '';
+    }
+    
+    rerenderTree(state);
 });
 
 export default state;
