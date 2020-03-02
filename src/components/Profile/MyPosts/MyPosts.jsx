@@ -14,7 +14,7 @@ const MyPosts = (props) => {
     }
 
     let handleChange = (e) => {
-        props.addPost(e.target.value, true);
+        props.updateTextPost(e.target.value);
     }
 
     return (

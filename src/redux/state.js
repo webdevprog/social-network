@@ -2,7 +2,7 @@ import {rerenderTree} from './../redner';
 
 let state = {
     profilePage: {
-        currentText: '',
+        textPost: '',
         posts: [
             { id: 1, message: "Hello, everyone", countLike: 3 },
             { id: 2, message: "Hello, everybody", countLike: 4 },
@@ -32,23 +32,22 @@ let state = {
             {id: 4, name: 'Anna', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg'},
         ]
     }
-};
+}
 
-export let addPost = ((messagePost, change = false) => {
+export let addPost = (() => {
     let newObj = {
         id: 5,
-        message: messagePost,
+        message: state.profilePage.textPost,
         countLike: 4,
     }
-
-    if (change) {
-        state.profilePage.currentText = messagePost;
-    } else {
-        state.profilePage.posts.push(newObj);
-        state.profilePage.currentText = '';
-    }
-    
+    state.profilePage.posts.push(newObj);
+    state.profilePage.textPost = '';
     rerenderTree(state);
-});
+})
+
+export let updateTextPost = ((textPost) => {
+    state.profilePage.textPost = textPost;
+    rerenderTree(state);
+})
 
 export default state;
