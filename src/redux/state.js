@@ -1,4 +1,6 @@
-import {rerenderTree} from './../redner';
+let rerenderTree = () => {
+    console.log('State changed')
+}
 
 let state = {
     profilePage: {
@@ -34,7 +36,7 @@ let state = {
     }
 }
 
-export let addPost = (() => {
+export const addPost = (() => {
     let newObj = {
         id: 5,
         message: state.profilePage.textPost,
@@ -45,9 +47,13 @@ export let addPost = (() => {
     rerenderTree(state);
 })
 
-export let updateTextPost = ((textPost) => {
+export const updateTextPost = ((textPost) => {
     state.profilePage.textPost = textPost;
     rerenderTree(state);
 })
+
+export const subscribe = (observer) => {
+    rerenderTree = observer;
+}
 
 export default state;
