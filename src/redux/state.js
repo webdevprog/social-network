@@ -41,25 +41,36 @@ let store = {
         return this._state;
     },
 
-    addPost() {
-        let newObj = {
-            id: 5,
-            message: this._state.profilePage.textPost,
-            countLike: 4,
-        }
-        this._state.profilePage.posts.push(newObj);
-        this._state.profilePage.textPost = '';
-        this._callSubscriber(this._state);
-    },
-
-    updateTextPost(value) {
-        console.log(value)
-        this._state.profilePage.textPost = value;
-        this._callSubscriber(this._state);
-    },
-
     subscribe(observer) {
         this._callSubscriber = observer;
+    },
+
+    addPost() {
+
+    },
+
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                let newObj = {
+                    id: 5,
+                    message: this._state.profilePage.textPost,
+                    countLike: 4,
+                }
+                this._state.profilePage.posts.push(newObj);
+                this._state.profilePage.textPost = '';
+                this._callSubscriber(this._state);
+                break;
+
+            case 'UPDATE-TEXT-POST':
+                this._state.profilePage.textPost = action.newText;
+                this._callSubscriber(this._state);
+            break;
+
+            default:
+                alert('Action with name: '+action.type+' doesn\'t exist')
+            break;
+        }
     }
 }
 

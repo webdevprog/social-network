@@ -1,7 +1,6 @@
 
 import React from 'react';
 import cls from './friend.module.scss';
-import { NavLink } from 'react-router-dom';
 
 const Friend = (props) => {
     return (

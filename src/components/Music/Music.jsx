@@ -1,6 +1,6 @@
 
 import React from 'react';
-import classes from './music.module.scss';
+import cls from './music.module.scss';
 
 const Music = () => {
     return (

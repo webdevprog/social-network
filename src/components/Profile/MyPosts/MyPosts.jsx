@@ -10,11 +10,16 @@ const MyPosts = (props) => {
     let addPost = (e) => {
         e.preventDefault()
         let text = textElement.current.value;
-        props.addPost(text);
+        props.dispatch({
+            type: 'ADD-POST'
+        })
     }
 
     let handleChange = (e) => {
-        props.updateTextPost(e.target.value);
+        props.dispatch({
+            type: 'UPDATE-TEXT-POS',
+            newText: e.target.value
+        })
     }
 
     return (

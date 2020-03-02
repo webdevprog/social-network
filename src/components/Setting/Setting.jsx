@@ -1,6 +1,6 @@
 
 import React from 'react';
-import classes from './setting.module.scss';
+import cls from './setting.module.scss';
 
 const Setting = () => {
     return (
