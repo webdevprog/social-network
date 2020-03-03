@@ -1,9 +1,9 @@
-//POST
-const ADD_POST = 'ADD-POST';
-const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 //DIALOGS
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE';
+
 
 let store = {
     _state: {
@@ -54,49 +54,14 @@ let store = {
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case ADD_POST: {
-                const newObj = {
-                    id: 5,
-                    message: this._state.profilePage.textPost,
-                    countLike: 4,
-                }
-                this._state.profilePage.posts.push(newObj);
-                this._state.profilePage.textPost = '';
-                this._callSubscriber(this._state);
-                break;
-            }
-            case UPDATE_TEXT_POST: {
-                this._state.profilePage.textPost = action.newText;
-                this._callSubscriber(this._state);
-                break;
-            }
-            case ADD_MESSAGE: {
-                const newObj = {
-                    id: 5,
-                    message: this._state.dialogsPage.textMessage,
-                }
-                this._state.dialogsPage.messages.push(newObj);
-                this._state.dialogsPage.textMessage = '';
-                this._callSubscriber(this._state);
-                break;
-            }
-            case UPDATE_TEXT_MESSAGE: {
-                this._state.dialogsPage.textMessage = action.newText;
-                this._callSubscriber(this._state);
-                break;
-            }
-            default: {
-                alert('Action with name: ' + action.type + ' doesn\'t exist')
-                break;
-            }
-        }
+    
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+        this._callSubscriber(this._state);
     }
 }
 
-export let addPostActionCreate = () => ({ type: ADD_POST });
-export let updateTextPostActionCreate = (text) => ({ type: UPDATE_TEXT_POST, newText: text });
-export let addMessageActionCreate = () => ({ type: ADD_MESSAGE });
-export let updateTextMessageActionCreate = (text) => ({ type: UPDATE_TEXT_MESSAGE, newText: text });
 
 export default store;

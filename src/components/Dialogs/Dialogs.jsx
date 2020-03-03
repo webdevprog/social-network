@@ -3,17 +3,18 @@ import React from 'react';
 import cls from './dialogs.module.scss';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {addMessageActionCreate, updateTextMessageActionCreate} from '../../redux/state'
+import {sendMessageActionCreate, updateTextMessageActionCreate} from '../../redux/dialogs-reducer'
 
 const Dialogs = (props) => {
 
-    let addMessage = (e) => {
+    let sendMessage = (e) => {
         e.preventDefault()
-        props.dispatch(addMessageActionCreate())
+        props.dispatch(sendMessageActionCreate())
     }
 
     let handleChange = (e) => {
-        props.dispatch(updateTextMessageActionCreate(e.target.value))
+        let body = e.target.value;
+        props.dispatch(updateTextMessageActionCreate(body))
     }
 
     return (
@@ -31,8 +32,8 @@ const Dialogs = (props) => {
                         <Message message={message.message} id={message.id} />
                     ))
                 }
-                <form action="" onSubmit={addMessage}>
-                    <textarea name="" id="" value={props.textMessage} onChange={handleChange} cols="30" rows="10"></textarea>
+                <form action="" onSubmit={sendMessage}>
+                    <textarea placeholder="Enter message" value={props.textMessage} onChange={handleChange} cols="30" rows="10"></textarea>
                     <input type="submit" value="Send"/>
                 </form>
             </div>
