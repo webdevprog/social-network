@@ -2,31 +2,24 @@
 import React from 'react';
 import cls from './myposts.module.scss';
 import Post from './Post/Post';
+import {updateTextPostActionCreate, addPostActionCreate} from '../../../redux/state'
 
 const MyPosts = (props) => {
 
-    let textElement = React.createRef();
-
     let addPost = (e) => {
         e.preventDefault()
-        let text = textElement.current.value;
-        props.dispatch({
-            type: 'ADD-POST'
-        })
+        props.dispatch(addPostActionCreate())
     }
 
     let handleChange = (e) => {
-        props.dispatch({
-            type: 'UPDATE-TEXT-POS',
-            newText: e.target.value
-        })
+        props.dispatch(updateTextPostActionCreate(e.target.value));
     }
 
     return (
         <div>
             <h2>My posts</h2>
             <form className={cls.formPost} action="" onSubmit={addPost}>
-                <textarea ref={textElement} value={props.text} onChange={handleChange} placeholder="your news" name="" id="" cols="30" rows="10"></textarea>
+                <textarea value={props.text} onChange={handleChange} placeholder="your news" name="" id="" cols="30" rows="10"></textarea>
                 <input type="submit" value="Send" />
             </form>
             <div className={cls.posts}>

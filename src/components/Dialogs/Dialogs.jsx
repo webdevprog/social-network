@@ -3,15 +3,17 @@ import React from 'react';
 import cls from './dialogs.module.scss';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-
+import {addMessageActionCreate, updateTextMessageActionCreate} from '../../redux/state'
 
 const Dialogs = (props) => {
 
-    let textElement = React.createRef();
+    let addMessage = (e) => {
+        e.preventDefault()
+        props.dispatch(addMessageActionCreate())
+    }
 
-    let addMessage = () => {
-        let text = textElement.current.value;
-        alert(text)
+    let handleChange = (e) => {
+        props.dispatch(updateTextMessageActionCreate(e.target.value))
     }
 
     return (
@@ -30,7 +32,7 @@ const Dialogs = (props) => {
                     ))
                 }
                 <form action="" onSubmit={addMessage}>
-                    <textarea ref={textElement} name="" id="" cols="30" rows="10"></textarea>
+                    <textarea name="" id="" value={props.textMessage} onChange={handleChange} cols="30" rows="10"></textarea>
                     <input type="submit" value="Send"/>
                 </form>
             </div>
