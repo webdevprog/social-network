@@ -2,7 +2,7 @@ const SEND_MESSAGE = 'SEND-MESSAGE';
 const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE';
 
 let initialState = {
-    diaologs: [
+    dialogs: [
         { name: 'Vitaiy', id: 1, img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg' },
         { name: 'Sasha', id: 2, img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg' },
         { name: 'Peter', id: 3, img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg' },
@@ -26,7 +26,7 @@ const dialogsReducer = (state = initialState, action) => {
                 message: state.textMessage,
             }
             state.messages.push(newObj);
-            state.textMessage = 'test';
+            state.textMessage = '';
             return state;
         }
         case UPDATE_TEXT_MESSAGE: {

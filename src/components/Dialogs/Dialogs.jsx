@@ -3,37 +3,36 @@ import React from 'react';
 import cls from './dialogs.module.scss';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {sendMessageActionCreate, updateTextMessageActionCreate} from '../../redux/dialogs-reducer'
 
 const Dialogs = (props) => {
 
-    let sendMessage = (e) => {
-        e.preventDefault()
-        props.dispatch(sendMessageActionCreate())
+    let onSendMessage = (e) => {
+        e.preventDefault();
+        props.sendMessage();
     }
 
-    let handleChange = (e) => {
+    let onUpdateTextMessage = (e) => {
         let body = e.target.value;
-        props.dispatch(updateTextMessageActionCreate(body))
+        props.updateTextMessage(body);
     }
 
     return (
         <div className={cls.dialogs}>
             <div className={cls.dialogsItem}>
                 {
-                    props.state.diaologs.map(dialog => (
+                    props.dialogs.map(dialog => (
                         <DialogItem name={dialog.name} id={dialog.id} img={dialog.img} />
                     ))
                 }
             </div>
             <div className={cls.messages}>
                 {
-                    props.state.messages.map(message => (
+                    props.messages.map(message => (
                         <Message message={message.message} id={message.id} />
                     ))
                 }
-                <form action="" onSubmit={sendMessage}>
-                    <textarea placeholder="Enter message" value={props.textMessage} onChange={handleChange} cols="30" rows="10"></textarea>
+                <form action="" onSubmit={onSendMessage}>
+                    <textarea placeholder="Enter message" value={props.textMessage} onChange={onUpdateTextMessage} cols="30" rows="10"></textarea>
                     <input type="submit" value="Send"/>
                 </form>
             </div>

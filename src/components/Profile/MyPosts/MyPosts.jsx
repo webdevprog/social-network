@@ -1,25 +1,23 @@
-
 import React from 'react';
 import cls from './myposts.module.scss';
 import Post from './Post/Post';
-import {updateTextPostActionCreate, addPostActionCreate} from '../../../redux/profile-reducer'
 
 const MyPosts = (props) => {
 
-    let addPost = (e) => {
+    let onAddPost = (e) => {
         e.preventDefault()
-        props.dispatch(addPostActionCreate())
+        props.addPost()
     }
 
-    let handleChange = (e) => {
-        props.dispatch(updateTextPostActionCreate(e.target.value));
+    let onUpdateTextPost = (e) => {
+        props.updateTextPost(e.target.value)
     }
 
     return (
         <div>
             <h2>My posts</h2>
-            <form className={cls.formPost} action="" onSubmit={addPost}>
-                <textarea value={props.text} onChange={handleChange} placeholder="your news" name="" id="" cols="30" rows="10"></textarea>
+            <form className={cls.formPost} action="" onSubmit={onAddPost}>
+                <textarea value={props.text} onChange={onUpdateTextPost} placeholder="your news" name="" id="" cols="30" rows="10"></textarea>
                 <input type="submit" value="Send" />
             </form>
             <div className={cls.posts}>
