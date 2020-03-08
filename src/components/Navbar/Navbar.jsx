@@ -30,7 +30,7 @@ const Navbar = (props) => {
                 <h3>Friends</h3>
                 <div className={cls.friends}>
                     {
-                        props.state.friends.map((friend) => (
+                        props.friends.map((friend) => (
                             <Friend name={friend.name} img={friend.img} />
                         ))
                     }

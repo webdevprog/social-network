@@ -12,12 +12,12 @@ const MyPosts = (props) => {
     let onUpdateTextPost = (e) => {
         props.updateTextPost(e.target.value)
     }
-
+    
     return (
         <div>
             <h2>My posts</h2>
             <form className={cls.formPost} action="" onSubmit={onAddPost}>
-                <textarea value={props.text} onChange={onUpdateTextPost} placeholder="your news" name="" id="" cols="30" rows="10"></textarea>
+                <textarea value={props.textPost} onChange={onUpdateTextPost} placeholder="your news" name="" id="" cols="30" rows="10"></textarea>
                 <input type="submit" value="Send" />
             </form>
             <div className={cls.posts}>
