@@ -1,10 +1,10 @@
 import Users from "./Users"
 import { connect } from "react-redux"
-import { showMoreActionCreate, followToggleActionCreate } from "../../redux/users-reducer"
+import { showMoreActionCreate, followToggleActionCreate, setUsersActionCreate } from "../../redux/users-reducer"
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users.slice(0, state.usersPage.prevUsers),
+        users: state.usersPage.users,
         showBtnMore: state.usersPage.users.length > state.usersPage.prevUsers ? true : false
     }
 }

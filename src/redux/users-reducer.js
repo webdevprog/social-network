@@ -4,17 +4,7 @@ const FOLLOW_TOGGLE = 'FOLLOW-TOGGLE';
 const SET_USERS = 'SET-USERS';
 
 let initialState = {
-    users: [
-        { id: 1, fullName: 'Vitaiy', followed: false, status: 'I am best of the best', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg', location: { country: 'Russian', city: 'Mosscow' } },
-        { id: 2, fullName: 'Sasha', followed: false, status: 'I am best of the best', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg', location: { country: 'Russian', city: 'Mosscow' } },
-        { id: 3, fullName: 'Vikki', followed: false, status: 'I am best of the best', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg', location: { country: 'Russian', city: 'Mosscow' } },
-        { id: 4, fullName: 'Victor', followed: false, status: 'I am best of the best', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg', location: { country: 'Russian', city: 'Mosscow' } },
-        { id: 5, fullName: 'Victor', followed: false, status: 'I am best of the best', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg', location: { country: 'Russian', city: 'Mosscow' } },
-        { id: 6, fullName: 'Victor', followed: false, status: 'I am best of the best', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg', location: { country: 'Russian', city: 'Mosscow' } },
-        { id: 7, fullName: 'Victor', followed: false, status: 'I am best of the best', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg', location: { country: 'Russian', city: 'Mosscow' } },
-        { id: 8, fullName: 'Victor', followed: false, status: 'I am best of the best', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg', location: { country: 'Russian', city: 'Mosscow' } },
-        { id: 9, fullName: 'Victor', followed: false, status: 'I am best of the best', img: 'https://cdn.pixabay.com/photo/2016/06/14/00/14/cat-1455468_960_720.jpg', location: { country: 'Russian', city: 'Mosscow' } },
-    ],
+    users: [],
     prevUsers: 4,
     stepUsers: 2
 }
@@ -58,6 +48,6 @@ const usersReducer = (state = initialState, action) => {
 export let searchUsersActionCreate = () => ({ type: SEARCH_USER });
 export let showMoreActionCreate = (usersLength) => ({ type: SHOW_MORE, usersLength });
 export let followToggleActionCreate = (userId) => ({ type: FOLLOW_TOGGLE, userId });
-export let setUsersActionCreate = (userId) => ({ type: SET_USERS, users });
+export let setUsersActionCreate = (users) => ({ type: SET_USERS, users });
 
 export default usersReducer;
