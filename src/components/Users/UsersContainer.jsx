@@ -16,6 +16,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         followToggle: (userId) => {
             dispatch(followToggleActionCreate(userId))
+        },
+        setUsers: (users) => {
+            dispatch(setUsersActionCreate(users))
         }
     }
 }

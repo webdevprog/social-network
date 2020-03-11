@@ -1,6 +1,7 @@
 const SEARCH_USER = 'SEARCH-USER ';
 const SHOW_MORE = 'SHOW-MORE';
-const FOLLOW_TOGGLE = 'FOLLOW_TOGGLE';
+const FOLLOW_TOGGLE = 'FOLLOW-TOGGLE';
+const SET_USERS = 'SET-USERS';
 
 let initialState = {
     users: [
@@ -42,6 +43,12 @@ const usersReducer = (state = initialState, action) => {
                 })
             };
         }
+        case SET_USERS: {
+            return {
+                ...state,
+                users: [...state.users, ...action.users]
+            };
+        }
         default: {
             return state;
         }
@@ -51,5 +58,6 @@ const usersReducer = (state = initialState, action) => {
 export let searchUsersActionCreate = () => ({ type: SEARCH_USER });
 export let showMoreActionCreate = (usersLength) => ({ type: SHOW_MORE, usersLength });
 export let followToggleActionCreate = (userId) => ({ type: FOLLOW_TOGGLE, userId });
+export let setUsersActionCreate = (userId) => ({ type: SET_USERS, users });
 
 export default usersReducer;
