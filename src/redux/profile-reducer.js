@@ -18,12 +18,10 @@ const profileReducer = (state = initialState, action) => {
                 message: state.textPost,
                 countLike: 4,
             }
-            state.posts.push(newObj);
-            state.textPost = '';
             return {
                 ...state,
-                posts: [...state.posts],
-                textPost: state.textPost
+                posts: [...state.posts, newObj],
+                textPost: ''
             };
         }
         case UPDATE_TEXT_POST: {
