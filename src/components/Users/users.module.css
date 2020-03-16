@@ -29,3 +29,13 @@
 .showMore {
     font-size: 30px;
 }
+
+.selectedPage {
+    font-weight: 600;
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}

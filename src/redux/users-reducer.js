@@ -1,32 +1,22 @@
-const SEARCH_USER = 'SEARCH-USER ';
-const SHOW_MORE = 'SHOW-MORE';
 const FOLLOW_TOGGLE = 'FOLLOW-TOGGLE';
 const SET_USERS = 'SET-USERS';
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
+const GET_TOTAL_USERS = 'GET-TOTAL-USERS';
 
 let initialState = {
     users: [],
-    prevUsers: 4,
-    stepUsers: 2
+    totalUsers: 0,
+    pageCurrent: 1,
+    pageSize: 40,
 }
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SEARCH_USER: {
-            return {
-                ...state
-            };
-        }
-        case SHOW_MORE: {
-            return {
-                ...state,
-                prevUsers: state.users.length > action.usersLength ? action.usersLength + state.stepUsers : state.prevUsers
-            };
-        }
         case FOLLOW_TOGGLE: {
             return {
                 ...state,
                 users: state.users.map(user => {
-                    if (user.id == action.userId) {
+                    if (user.id === action.userId) {
                         return {...user, followed: !user.followed}
                     }
                     return user;
@@ -36,7 +26,19 @@ const usersReducer = (state = initialState, action) => {
         case SET_USERS: {
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: [...action.users]
+            };
+        }
+        case GET_TOTAL_USERS: {
+            return {
+                ...state,
+                totalUsers: action.total
+            };
+        }
+        case SET_CURRENT_PAGE: {
+            return {
+                ...state,
+                pageCurrent: action.currentPage
             };
         }
         default: {
@@ -45,9 +47,9 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-export let searchUsersActionCreate = () => ({ type: SEARCH_USER });
-export let showMoreActionCreate = (usersLength) => ({ type: SHOW_MORE, usersLength });
 export let followToggleActionCreate = (userId) => ({ type: FOLLOW_TOGGLE, userId });
 export let setUsersActionCreate = (users) => ({ type: SET_USERS, users });
+export let getTotalUsersActionCreate = (total) => ({ type: GET_TOTAL_USERS, total });
+export let setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
 
 export default usersReducer;

@@ -1,24 +1,29 @@
 import Users from "./Users"
 import { connect } from "react-redux"
-import { showMoreActionCreate, followToggleActionCreate, setUsersActionCreate } from "../../redux/users-reducer"
+import { setCurrentPageAC, followToggleActionCreate, setUsersActionCreate, getTotalUsersActionCreate } from "../../redux/users-reducer"
 
 let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
-        showBtnMore: state.usersPage.users.length > state.usersPage.prevUsers ? true : false
+        pageSize: state.usersPage.pageSize,
+        totalUsers: state.usersPage.totalUsers,
+        pageCurrent: state.usersPage.pageCurrent
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        showMore: (usersLength) => {
-            dispatch(showMoreActionCreate(usersLength))
-        },
         followToggle: (userId) => {
             dispatch(followToggleActionCreate(userId))
         },
         setUsers: (users) => {
             dispatch(setUsersActionCreate(users))
+        },
+        setCurrentPage: (currentPage) => {
+            dispatch(setCurrentPageAC(currentPage))
+        },
+        getTotalUsers: (total) => {
+            dispatch(getTotalUsersActionCreate(total))
         }
     }
 }
