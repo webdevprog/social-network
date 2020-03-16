@@ -2,12 +2,14 @@ const FOLLOW_TOGGLE = 'FOLLOW-TOGGLE';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const GET_TOTAL_USERS = 'GET-TOTAL-USERS';
+const TOGGLE_FETCHING = 'TOGGLE-FETCHING ';
 
 let initialState = {
     users: [],
     totalUsers: 0,
     pageCurrent: 1,
-    pageSize: 40,
+    pageSize: 3,
+    isFetching: true
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -41,15 +43,22 @@ const usersReducer = (state = initialState, action) => {
                 pageCurrent: action.currentPage
             };
         }
+        case TOGGLE_FETCHING: {
+            return {
+                ...state,
+                isFetching: !action.isFetching
+            };
+        }
         default: {
             return state;
         }
     }
 }
 
-export let followToggleActionCreate = (userId) => ({ type: FOLLOW_TOGGLE, userId });
-export let setUsersActionCreate = (users) => ({ type: SET_USERS, users });
-export let getTotalUsersActionCreate = (total) => ({ type: GET_TOTAL_USERS, total });
-export let setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
+export let followToggle = (userId) => ({ type: FOLLOW_TOGGLE, userId });
+export let setUsers = (users) => ({ type: SET_USERS, users });
+export let getTotalUsers = (total) => ({ type: GET_TOTAL_USERS, total });
+export let setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
+export let toggleFetching = (isFetching) => ({ type: TOGGLE_FETCHING, isFetching });
 
 export default usersReducer;

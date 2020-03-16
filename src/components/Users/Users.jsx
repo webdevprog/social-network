@@ -2,7 +2,7 @@ import React from 'react';
 import cls from './users.module.css';
 
 const Users = (props) => {
-    debugger
+
     let pageCount = Math.ceil(props.totalUsers / props.pageSize);
     let pages = [];
 
