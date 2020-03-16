@@ -1,9 +1,10 @@
 import React from 'react';
 import Users from "./Users"
+import Pagination from "../common/Pagination/Pagination"
 import { connect } from "react-redux"
 import * as axios from "axios"
 import { setCurrentPage, followToggle, setUsers, getTotalUsers, toggleFetching } from "../../redux/users-reducer"
-import loader from '../../assets/images/loader.svg'
+import Preloader from '../common/Preloader/Preloader';
 
 
 
@@ -16,7 +17,7 @@ class UsersContainer extends React.Component {
                 this.props.toggleFetching(true);
                 this.props.setUsers(response.data.items);
                 this.props.getTotalUsers(response.data.totalCount);
-                
+
             });
     }
 
@@ -34,16 +35,22 @@ class UsersContainer extends React.Component {
     render() {
         return (
             <>
-            {this.props.isFetching ? <img src={loader} alt=""/> : 
-            <Users 
-                users={this.props.users}
-                pageSize={this.props.pageSize}
-                totalUsers={this.props.totalUsers}
-                pageCurrent={this.props.pageCurrent}
-                followToggle={this.props.followToggle}
-                onChangePage={this.onChangePage}
-            />
-            }
+                {this.props.isFetching ?
+
+                    <Preloader /> :
+
+                    <Users
+                        users={this.props.users}
+                        followToggle={this.props.followToggle}
+                    />
+                }
+
+                <Pagination
+                    onChangePage={this.onChangePage}
+                    pageCurrent={this.props.pageCurrent}
+                    pageSize={this.props.pageSize}
+                    totalUsers={this.props.totalUsers}
+                />
             </>
         )
     }

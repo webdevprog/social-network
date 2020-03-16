@@ -3,13 +3,6 @@ import cls from './users.module.css';
 
 const Users = (props) => {
 
-    let pageCount = Math.ceil(props.totalUsers / props.pageSize);
-    let pages = [];
-
-    for (let page = 1; page <= pageCount; page++) {
-        pages.push(page);
-    }
-
     return (
         <div>
             <div className={cls.users}>
@@ -25,17 +18,6 @@ const Users = (props) => {
                             </div>
                         </div>
                     ))
-                }
-            </div>
-            <div className={cls.pagination}>
-                {
-                    pages.map(page => {
-                        return (
-                            <span key={page} onClick={() => { props.onChangePage(page) }} className={props.pageCurrent === page ? cls.selectedPage : ''}>
-                                {page}
-                            </span>
-                        )
-                    })
                 }
             </div>
         </div>
