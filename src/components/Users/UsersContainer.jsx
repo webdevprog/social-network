@@ -17,7 +17,6 @@ class UsersContainer extends React.Component {
                 this.props.toggleFetching(true);
                 this.props.setUsers(response.data.items);
                 this.props.getTotalUsers(response.data.totalCount);
-
             });
     }
 
@@ -49,7 +48,7 @@ class UsersContainer extends React.Component {
                     onChangePage={this.onChangePage}
                     pageCurrent={this.props.pageCurrent}
                     pageSize={this.props.pageSize}
-                    totalUsers={this.props.totalUsers}
+                    totalPages={this.props.totalUsers}
                 />
             </>
         )

@@ -8,7 +8,7 @@ let initialState = {
     users: [],
     totalUsers: 0,
     pageCurrent: 1,
-    pageSize: 3,
+    pageSize: 9,
     isFetching: true
 }
 
