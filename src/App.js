@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, BrowserRouter } from 'react-router-dom';
 import './App.scss';
 import Header from './components/Header/Header';
-import Profile from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileContainer';
 import Setting from './components/Setting/Setting';
 import News from './components/News/News';
 import Music from './components/Music/Music';
@@ -18,7 +18,7 @@ const App = (props) => {
                 <Header />
                 <NavbarContainer />
                 <div className="app-wrapper-content">
-                    <Route path="/profile" render={() => <Profile />} />
+                    <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
                     <Route path="/dialogs" render={() => <DialogsContainer />} />
                     <Route path="/users" render={() => <UsersContainer />} />
                     <Route path="/news" component={News} />
