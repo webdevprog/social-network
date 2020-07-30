@@ -25,3 +25,7 @@
     border-radius: 50%;
     object-fit: cover; 
 }
+
+.userFollow:disabled {
+    opacity: .5;
+}

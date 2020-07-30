@@ -2,9 +2,9 @@ import * as axios from "axios";
 
 const samuraiAPI = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    withCretentials: true,
+    withCredentials: true,
     headers: {
-        "API-KEY": "a7438d49-4a44-4a7d-8f33-9d644abd353c"
+        "API-KEY": "e2714baf-44ef-4f66-8332-c9d8cb5d46cc"
     }
 });
 
@@ -16,7 +16,7 @@ export const usersAPI = {
         return samuraiAPI.get(`users/?page=${page}&count=${pageSize}`).then(response => response.data);
     },
     follow(userId) {
-        return samuraiAPI.post(`follow/${userId}`).then(response => response.data);
+        return samuraiAPI.post(`follow/${userId}`, {}).then(response => response.data);
     },
     unfollow(userId) {
         return samuraiAPI.delete(`follow/${userId}`).then(response => response.data);
@@ -25,7 +25,7 @@ export const usersAPI = {
 
 export const authAPI = {
     singInUser() {
-        return samuraiAPI.get(`auth/me`).then(response => response.data);
+        return samuraiAPI.get(`auth/me`);
     }
 }
 
