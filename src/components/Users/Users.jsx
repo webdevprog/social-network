@@ -1,6 +1,7 @@
 import React from 'react';
 import cls from './users.module.css';
 import { NavLink } from 'react-router-dom';
+import { usersAPI } from '../../api/api';
 
 const Users = (props) => {
 
@@ -15,7 +16,25 @@ const Users = (props) => {
                                 <NavLink to={`profile/${user.id}`}>
                                     <img className={cls.userPhoto} src={user.photos.large ? user.photos.large : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'} alt="" />
                                 </NavLink>
-                                <button className={cls.userFollow} onClick={() => { props.followToggle(user.id) }}>{user.followed ? 'unfollow' : 'follow'}</button>
+                                <button
+                                    className={cls.userFollow}
+                                    onClick={() => {
+                                        if (!user.followed) {
+                                            usersAPI.follow(user.id).then(data => {
+                                                if (data.resultCode === 0) {
+                                                    props.followToggle(user.id)
+                                                }
+                                            })
+                                        } else {
+                                            usersAPI.unfollow(user.id).then(data => {
+                                                if (data.resultCode === 0) {
+                                                    props.followToggle(user.id)
+                                                }
+                                            })
+                                        }
+                                    }}>
+                                    {user.followed ? 'unfollow' : 'follow'}
+                                </button>
                             </div>
                             <div>
                                 <h3 className={cls.userName}>{user.name}</h3>
