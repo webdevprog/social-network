@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const FOLLOW_TOGGLE = 'FOLLOW-TOGGLE';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
@@ -21,7 +23,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(user => {
                     if (user.id === action.userId) {
-                        return {...user, followed: !user.followed}
+                        return { ...user, followed: !user.followed }
                     }
                     return user;
                 })
@@ -55,8 +57,8 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 followingInProcess: action.followingInProcess ?
-                state.followingInProcess.filter(item => item !== action.userID) :
-                [...state.followingInProcess, action.userID]
+                    state.followingInProcess.filter(item => item !== action.userID) :
+                    [...state.followingInProcess, action.userID]
             };
         }
         default: {
@@ -65,11 +67,24 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-export let followToggle = (userId) => ({ type: FOLLOW_TOGGLE, userId });
-export let setUsers = (users) => ({ type: SET_USERS, users });
-export let getTotalUsers = (total) => ({ type: GET_TOTAL_USERS, total });
-export let setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
-export let toggleFetching = (isFetching) => ({ type: TOGGLE_FETCHING, isFetching });
-export let followingProcess = (followingInProcess, userID) => ({ type: FOLLOWING_PROCESS, followingInProcess, userID });
+export const followToggle = (userId) => ({ type: FOLLOW_TOGGLE, userId });
+export const setUsers = (users) => ({ type: SET_USERS, users });
+export const getTotalUsers = (total) => ({ type: GET_TOTAL_USERS, total });
+export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
+export const toggleFetching = (isFetching) => ({ type: TOGGLE_FETCHING, isFetching });
+export const followingProcess = (followingInProcess, userID) => ({ type: FOLLOWING_PROCESS, followingInProcess, userID });
+
+export const getUsersThunkCreater = (page, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleFetching(false));
+        usersAPI.getUsers(pageSize).then(data => {
+            dispatch(toggleFetching(true));
+            dispatch(setUsers(data.items));
+            dispatch(getTotalUsers(data.totalCount));
+        });
+
+        dispatch(setCurrentPage(page));
+    }
+}
 
 export default usersReducer;

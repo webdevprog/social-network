@@ -2,30 +2,18 @@ import React from 'react';
 import Users from "./Users"
 import Pagination from "../common/Pagination/Pagination"
 import { connect } from "react-redux"
-import { setCurrentPage, followToggle, setUsers, getTotalUsers, toggleFetching, followingProcess } from "../../redux/users-reducer";
+import { followToggle, followingProcess, getUsersThunkCreater} from "../../redux/users-reducer";
 import Preloader from '../common/Preloader/Preloader';
-import { usersAPI } from '../../api/api';
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.toggleFetching(false);
-        usersAPI.getUsers(this.props.pageSize).then(data => {
-            this.props.toggleFetching(true);
-            this.props.setUsers(data.items);
-            this.props.getTotalUsers(data.totalCount);
-        });
+        this.props.getUsers(this.props.pageCurrent, this.props.pageSize);
     }
 
     onChangePage = (page) => {
-        this.props.toggleFetching(false);
-        usersAPI.changePage(page, this.props.pageSize).then(data => {
-            this.props.toggleFetching(true);
-            this.props.setUsers(data.items);
-        });
-
-        this.props.setCurrentPage(page);
+        this.props.getUsers(page, this.props.pageSize);
     }
 
     render() {
@@ -65,4 +53,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { followToggle, setUsers, setCurrentPage, getTotalUsers, toggleFetching, followingProcess })(UsersContainer);
+export default connect(mapStateToProps, { 
+    followToggle, followingProcess,
+    getUsers: getUsersThunkCreater
+ })(UsersContainer);
