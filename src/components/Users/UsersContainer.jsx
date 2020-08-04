@@ -2,7 +2,7 @@ import React from 'react';
 import Users from "./Users"
 import Pagination from "../common/Pagination/Pagination"
 import { connect } from "react-redux"
-import { followToggle, followingProcess, getUsersThunkCreater} from "../../redux/users-reducer";
+import { getUsersThunkCreater, followToggleThunkCreater} from "../../redux/users-reducer";
 import Preloader from '../common/Preloader/Preloader';
 
 
@@ -26,7 +26,6 @@ class UsersContainer extends React.Component {
                     <Users
                         users={this.props.users}
                         followToggle={this.props.followToggle}
-                        followingProcess={this.props.followingProcess}
                         followingInProcess={this.props.followingInProcess}
                     />
                 }
@@ -54,6 +53,6 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { 
-    followToggle, followingProcess,
+    followToggle: followToggleThunkCreater,
     getUsers: getUsersThunkCreater
  })(UsersContainer);

@@ -1,7 +1,6 @@
 import React from 'react';
 import cls from './users.module.css';
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../../api/api';
 
 const Users = (props) => {
 
@@ -18,24 +17,7 @@ const Users = (props) => {
                                 </NavLink>
                                 <button
                                     className={cls.userFollow}
-                                    onClick={() => {
-                                        props.followingProcess(false, user.id);
-                                        if (!user.followed) {
-                                            usersAPI.follow(user.id).then(data => {
-                                                if (data.resultCode === 0) {
-                                                    props.followToggle(user.id);
-                                                    props.followingProcess(true, user.id);
-                                                }
-                                            })
-                                        } else {
-                                            usersAPI.unfollow(user.id).then(data => {
-                                                if (data.resultCode === 0) {
-                                                    props.followToggle(user.id);
-                                                    props.followingProcess(true, user.id);
-                                                }
-                                            })
-                                        }
-                                    }}
+                                    onClick={() => props.followToggle(user.followed, user.id)}
                                     disabled={props.followingInProcess.some(item => item === user.id)}
                                     >
                                     {user.followed ? 'unfollow' : 'follow'}

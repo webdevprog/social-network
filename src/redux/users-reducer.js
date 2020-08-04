@@ -87,4 +87,26 @@ export const getUsersThunkCreater = (page, pageSize) => {
     }
 }
 
+export const followToggleThunkCreater = (followed, userId) => {
+    return (dispatch) => {
+        dispatch(followingProcess(false, userId));
+        if (!followed) {
+            usersAPI.follow(userId).then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(followToggle(userId));
+                    dispatch(followingProcess(true, userId));
+                }
+            });
+        } else {
+            usersAPI.unfollow(userId).then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(followToggle(userId));
+                    dispatch(followingProcess(true, userId));
+                }
+            });
+        }
+    }
+}
+
+
 export default usersReducer;
