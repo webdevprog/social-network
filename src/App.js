@@ -9,6 +9,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 
 
 const App = (props) => {
@@ -24,6 +25,7 @@ const App = (props) => {
                     <Route path="/news" component={News} />
                     <Route path="/music" component={Music} />
                     <Route path="/setting" component={Setting} />
+                    <Route path="/login" component={Login} />
                 </div>
             </div>
         </BrowserRouter>
