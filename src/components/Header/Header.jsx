@@ -10,7 +10,7 @@ const Header = (props) => {
                 <h1>Logo text</h1>
             </div>
             <div className="login">
-                {!props.isFetch ? <a href="">login</a> : props.login}
+                {!props.isAuth ? <a href="">login</a> : props.login}
             </div>
         </header>
     );
