@@ -7,7 +7,7 @@ const Header = (props) => {
         <header className={cls.header}>
             <div className={cls.logo}>
                 <img src="https://cdn.pixabay.com/photo/2016/08/25/07/30/orange-1618917_960_720.png" alt="" className={cls.logoImg} />
-                <h1>Logo text</h1>
+                <h1>social-network</h1>
             </div>
             <div className="login">
                 {!props.isAuth ? <a href="">login</a> : props.login}
