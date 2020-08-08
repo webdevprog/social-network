@@ -77,7 +77,7 @@ export const followingProcess = (followingInProcess, userID) => ({ type: FOLLOWI
 export const getUsersThunkCreater = (page, pageSize) => {
     return (dispatch) => {
         dispatch(toggleFetching(false));
-        usersAPI.getUsers(pageSize).then(data => {
+        usersAPI.getUsers(page, pageSize).then(data => {
             dispatch(toggleFetching(true));
             dispatch(setUsers(data.items));
             dispatch(getTotalUsers(data.totalCount));

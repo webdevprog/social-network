@@ -10,7 +10,10 @@ const samuraiAPI = axios.create({
 
 export const usersAPI = {
     getUsers(page, pageSize) {
-        return samuraiAPI.get(`users/?page=${page}&count=${pageSize}`).then(response => response.data);
+        return samuraiAPI.get(`users/?page=${page}&count=${pageSize}`).
+            then(response => {
+                return response.data
+            });
     },
     follow(userId) {
         return samuraiAPI.post(`follow/${userId}`, {}).then(response => response.data);
@@ -29,5 +32,11 @@ export const authAPI = {
 export const profileAPI = {
     setUserProfile(userID) {
         return samuraiAPI.get(`auth/me`).then((res) => samuraiAPI.get(`/profile/${userID || res.data.data.id}`)).then(response => response.data);
+    },
+    getStatusProfile(userID) {
+        return samuraiAPI.get(`profile/status/${userID}`);
+    },
+    updateStatusProfile(status) {
+        return samuraiAPI.put(`profile/status/`, { status });
     }
 }

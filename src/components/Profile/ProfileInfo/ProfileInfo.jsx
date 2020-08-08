@@ -17,7 +17,7 @@ const ProfileInfo = (props) => {
                         src={props.profile.photos.large ? props.profile.photos.large : "https://cdn.pixabay.com/photo/2020/02/23/11/36/landscape-4873098_960_720.jpg"}
                         alt={props.profile.fullName}
                     />
-                    <ProfileStatus status="Hi my first status" />
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatusProfile} />
                 </div>
                 <div className={cls.userInfo}>
                     <div className={cls.name}>{props.profile.fullName}</div>

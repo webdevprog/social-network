@@ -3,10 +3,12 @@ import { profileAPI } from "../api/api";
 const ADD_POST = 'ADD-POST';
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
+const SET_STATUS_PROFILE = 'SET_STATUS_PROFILE';
 
 let initialState = {
     profile: null,
     textPost: '',
+    status: '',
     posts: [
         { id: 1, message: "Hello, everyone", countLike: 3 },
         { id: 2, message: "Hello, everybody", countLike: 4 },
@@ -28,11 +30,17 @@ const profileReducer = (state = initialState, action) => {
                 textPost: ''
             };
         }
+
         case UPDATE_TEXT_POST: {
             return { ...state, textPost: action.newText };
         }
+
         case SET_USER_PROFILE: {
             return { ...state, profile: {...action.profile} };
+        }
+
+        case SET_STATUS_PROFILE: {
+            return { ...state, status: action.status };
         }
         
         default: {
@@ -44,11 +52,30 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreate = () => ({ type: ADD_POST });
 export const updateTextPostActionCreate = (text) => ({ type: UPDATE_TEXT_POST, newText: text });
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
+export const setStatusProfile = (status) => ({ type: SET_STATUS_PROFILE, status });
 
-export const getUserProfileThunkCreater = (userId) => {
+export const getUserProfile = (userId) => {
     return (dispatch) => {
         profileAPI.setUserProfile(userId).then(data => {
             dispatch(setUserProfile(data));
+        });
+    }
+}
+
+export const getStatusProfile = (userId) => {
+    return (dispatch) => {
+        profileAPI.getStatusProfile(userId).then(response => {
+            dispatch(setStatusProfile(response.data));
+        });
+    }
+}
+
+export const updateStatusProfile = (status) => {
+    return (dispatch) => {
+        profileAPI.updateStatusProfile(status).then(response => {
+            if (response.resultCode === 0) {
+                dispatch(setStatusProfile(status));
+            }
         });
     }
 }
