@@ -1,6 +1,7 @@
 
 import React from 'react';
 import cls from './header.module.scss';
+import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
     return (
@@ -10,9 +11,16 @@ const Header = (props) => {
                 <h1>social-network</h1>
             </div>
             <div className="login">
-                {!props.isAuth ? <a href="">login</a> : props.login}
+                {!props.isAuth ?
+                    <NavLink to="/login">login</NavLink>
+                    :
+                    <div>
+                        <div>{props.login}</div>
+                        <a href="#">logout</a>
+                    </div>
+                }
             </div>
-        </header>
+        </header >
     );
 }
 

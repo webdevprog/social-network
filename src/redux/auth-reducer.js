@@ -38,5 +38,16 @@ export const authUserThunkCreater = () => {
     }
 }
 
+
+export const loginUser = (dataLogin) => {
+    return (dispatch) => {
+        authAPI.login(dataLogin).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setAuthUserData());
+            }
+        })
+    }
+}
+
 export default authReducer;
 

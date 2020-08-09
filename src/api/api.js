@@ -26,6 +26,11 @@ export const usersAPI = {
 export const authAPI = {
     singInUser() {
         return samuraiAPI.get(`auth/me`);
+    },
+
+    login(dataLogin) {
+        debugger
+        return samuraiAPI.post(`/auth/login`, dataLogin);
     }
 }
 
