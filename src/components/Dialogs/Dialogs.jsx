@@ -3,19 +3,9 @@ import React from 'react';
 import cls from './dialogs.module.scss';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { Redirect } from 'react-router-dom';
+import { reduxForm, Field } from 'redux-form';
 
 const Dialogs = (props) => {
-
-    let onSendMessage = (e) => {
-        e.preventDefault();
-        props.sendMessage();
-    }
-
-    let onUpdateTextMessage = (e) => {
-        let body = e.target.value;
-        props.updateTextMessage(body);
-    }
 
     return (
         <div className={cls.dialogs}>
@@ -32,13 +22,21 @@ const Dialogs = (props) => {
                         <Message message={message.message} id={message.id} />
                     ))
                 }
-                <form action="" onSubmit={onSendMessage}>
-                    <textarea placeholder="Enter message" value={props.textMessage} onChange={onUpdateTextMessage} cols="30" rows="10"></textarea>
-                    <input type="submit" value="Send"/>
-                </form>
+                <ReduxDialogForm onSubmit={props.sendMessage} />
             </div>
         </div>
     );
 }
+
+let DialogForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field placeholder="Enter message" name="textMessage" component="textarea" />
+            <button type="submit">Send</button>
+        </form>
+    );
+}
+
+const ReduxDialogForm = reduxForm({ form: 'diaolog' })(DialogForm);
 
 export default Dialogs;

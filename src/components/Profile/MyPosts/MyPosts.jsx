@@ -1,25 +1,13 @@
 import React from 'react';
 import cls from './myposts.module.scss';
 import Post from './Post/Post';
+import { reduxForm, Field } from 'redux-form';
 
 const MyPosts = (props) => {
-
-    let onAddPost = (e) => {
-        e.preventDefault()
-        props.addPost()
-    }
-
-    let onUpdateTextPost = (e) => {
-        props.updateTextPost(e.target.value)
-    }
-    
     return (
         <div>
             <h2>My posts</h2>
-            <form className={cls.formPost} action="" onSubmit={onAddPost}>
-                <textarea value={props.textPost} onChange={onUpdateTextPost} placeholder="your news" name="" id="" cols="30" rows="10"></textarea>
-                <input type="submit" value="Send" />
-            </form>
+            <ReduxFormPost onSubmit={props.addPost} />
             <div className={cls.posts}>
                 {
                     props.posts.map(post => (
@@ -30,5 +18,16 @@ const MyPosts = (props) => {
         </div>
     );
 }
+
+let addNewPostForm = (props) => {
+    return (
+        <form className={cls.formPost} onSubmit={props.handleSubmit}>
+            <Field placeholder="your post" name="postText" component="textarea" />
+            <button type="submit">Send</button>
+        </form>
+    );
+}
+
+const ReduxFormPost = reduxForm({ form: 'addNewPost' })(addNewPostForm);
 
 export default MyPosts;

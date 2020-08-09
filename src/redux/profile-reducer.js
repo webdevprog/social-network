@@ -1,13 +1,11 @@
 import { profileAPI } from "../api/api";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS_PROFILE = 'SET_STATUS_PROFILE';
 
 let initialState = {
     profile: null,
-    textPost: '',
     status: '',
     posts: [
         { id: 1, message: "Hello, everyone", countLike: 3 },
@@ -21,18 +19,13 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST: {
             let newObj = {
                 id: 5,
-                message: state.textPost,
+                message: action.textPost,
                 countLike: 4,
             }
             return {
                 ...state,
-                posts: [...state.posts, newObj],
-                textPost: ''
+                posts: [...state.posts, newObj]
             };
-        }
-
-        case UPDATE_TEXT_POST: {
-            return { ...state, textPost: action.newText };
         }
 
         case SET_USER_PROFILE: {
@@ -49,8 +42,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreate = () => ({ type: ADD_POST });
-export const updateTextPostActionCreate = (text) => ({ type: UPDATE_TEXT_POST, newText: text });
+export const addPostActionCreate = (textPost) => ({ type: ADD_POST, textPost });
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 export const setStatusProfile = (status) => ({ type: SET_STATUS_PROFILE, status });
 
@@ -77,6 +69,12 @@ export const updateStatusProfile = (status) => {
                 dispatch(setStatusProfile(status));
             }
         });
+    }
+}
+
+export const addPost = (formData) => {
+    return (dispatch) => {
+        dispatch(addPostActionCreate(formData.postText));
     }
 }
 
