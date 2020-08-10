@@ -1,0 +1,2 @@
+export const required = (value) => (value && value.length ? undefined : "required field");
+export const maxLengthCreator = (max) => (value) => (value && value.length < max ? undefined : `Max length ${max}`);
