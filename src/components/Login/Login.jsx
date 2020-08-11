@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { loginUser } from '../../redux/auth-reducer';
 import { compose } from 'redux';
 import withProfileRedirect from '../../hoc/withProfileRedirect';
+import { Input } from '../common/FormControls/FormControls';
+import { required } from '../../utils/validators';
 
 class LoginContainer extends React.Component {
     
@@ -28,10 +30,10 @@ let LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder="email" name="email" component="input" type="text" />
+                <Field placeholder="email" name="email" component={Input} validate={[required]} type="text" />
             </div>
             <div>
-                <Field placeholder="password" name="password" component="input" type="password" />
+                <Field placeholder="password" name="password" component={Input} validate={[required]} type="password" />
             </div>
             <div>
                 <Field name="rememberMe" component="input" type="checkbox" />
