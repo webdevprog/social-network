@@ -29,18 +29,24 @@ export const authAPI = {
     },
 
     login(dataLogin) {
-        debugger
         return samuraiAPI.post(`/auth/login`, dataLogin);
+    },
+
+    logout() {
+        debugger
+        return samuraiAPI.delete(`/auth/login`);
     }
 }
 
 export const profileAPI = {
     setUserProfile(userID) {
-        return samuraiAPI.get(`auth/me`).then((res) => samuraiAPI.get(`/profile/${userID || res.data.data.id}`)).then(response => response.data);
+        return samuraiAPI.get(`/profile/${userID}`);
     },
+
     getStatusProfile(userID) {
         return samuraiAPI.get(`profile/status/${userID}`);
     },
+    
     updateStatusProfile(status) {
         return samuraiAPI.put(`profile/status/`, { status });
     }

@@ -16,11 +16,11 @@ const Header = (props) => {
                     :
                     <div>
                         <div>{props.login}</div>
-                        <a href="#">logout</a>
+                        <a href="#" onClick={props.logoutUser}>logout</a>
                     </div>
                 }
             </div>
-        </header >
+        </header>
     );
 }
 

@@ -39,6 +39,7 @@ let LoginForm = (props) => {
                 <Field name="rememberMe" component="input" type="checkbox" />
                 <label htmlFor="rememberMe">Remember me</label>
             </div>
+            {props.error && <div className={"formSummaryError"}>{props.error}</div>}
             <div>
                 <button type="submit">Login</button>
             </div>
@@ -50,13 +51,7 @@ const ReduxFormLogin = reduxForm({
     form: 'login'
 })(LoginForm);
 
-let mapStateToProps = (state) => {
-    return {
- 
-    }
-}
-
 export default compose(
-    connect(mapStateToProps, {loginUser}),
+    connect(null, {loginUser}),
     withProfileRedirect
 )(LoginContainer);

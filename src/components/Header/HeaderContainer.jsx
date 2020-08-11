@@ -2,7 +2,7 @@
 import React from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
-import { authUserThunkCreater } from '../../redux/auth-reducer';
+import { authUserThunkCreater, logoutUser } from '../../redux/auth-reducer';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
@@ -27,5 +27,6 @@ let mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps, {
         authUser: authUserThunkCreater,
+        logoutUser
     })
 )(HeaderContainer);
