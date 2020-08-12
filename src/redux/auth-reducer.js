@@ -29,7 +29,7 @@ export const setAuthUserData = (id, login, email, isAuth) => ({ type: SET_AUTH_U
 
 export const authUserThunkCreater = () => {
     return (dispatch) => {
-        authAPI.singInUser().then(response => {
+        return authAPI.singInUser().then(response => {
             if (response.data.resultCode === 0) {
                 let { id, email, login } = response.data.data;
                 dispatch(setAuthUserData(id, login, email, true));

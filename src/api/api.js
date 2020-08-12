@@ -33,7 +33,6 @@ export const authAPI = {
     },
 
     logout() {
-        debugger
         return samuraiAPI.delete(`/auth/login`);
     }
 }
