@@ -14,6 +14,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { initialize } from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
+import withAuthRedirect from './hoc/withAuthRedirect';
 
 class App extends React.Component {
     componentDidMount() {
@@ -50,6 +51,5 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    withRouter,
     connect(mapStateToProps, {initialize})
 )(App);
