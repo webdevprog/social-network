@@ -1,19 +1,23 @@
 import React from 'react';
-import Users from "./Users"
-import Pagination from "../common/Pagination/Pagination"
-import { connect } from "react-redux"
-import { getUsersThunkCreater, followToggleThunkCreater} from "../../redux/users-reducer";
+import { connect } from "react-redux";
+import { followToggleThunkCreater, getUsersThunkCreater } from "../../redux/users-reducer";
+import Pagination from "../common/Pagination/Pagination";
 import Preloader from '../common/Preloader/Preloader';
+import Users from "./Users";
+import {
+    getUsers, getPageSize, getPageCurrent,
+    getTotalUsers, getIsFetching, getFollowingInProcess
+} from '../../redux/users-selectors';
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getUsers(this.props.pageCurrent, this.props.pageSize);
+        this.props.usersRequest(this.props.pageCurrent, this.props.pageSize);
     }
 
     onChangePage = (page) => {
-        this.props.getUsers(page, this.props.pageSize);
+        this.props.usersRequest(page, this.props.pageSize);
     }
 
     render() {
@@ -43,16 +47,16 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsers: state.usersPage.totalUsers,
-        pageCurrent: state.usersPage.pageCurrent,
-        isFetching: state.usersPage.isFetching,
-        followingInProcess: state.usersPage.followingInProcess
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsers: getTotalUsers(state),
+        pageCurrent: getPageCurrent(state),
+        isFetching: getIsFetching(state),
+        followingInProcess: getFollowingInProcess(state)
     }
 }
 
-export default connect(mapStateToProps, { 
+export default connect(mapStateToProps, {
     followToggle: followToggleThunkCreater,
-    getUsers: getUsersThunkCreater
- })(UsersContainer);
+    usersRequest: getUsersThunkCreater
+})(UsersContainer);
