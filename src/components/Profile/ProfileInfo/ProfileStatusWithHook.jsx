@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { updateStatusProfile } from '../../../redux/profile-reducer';
 
 const ProfileStatusWithHook = (props) => {
 
@@ -16,18 +15,26 @@ const ProfileStatusWithHook = (props) => {
         props.updateStatus(status);
     }
 
+    const changeStatus = (e) => {
+        setStatus(e.target.value);
+    }
+
     return (
         <div>
-            {editMode &&
+            {!editMode &&
                 <div onDoubleClick={activeEditMode}>
                     <span>
-                        {status|| "````````"}
+                        {status || "````````"}
                     </span>
                 </div>
             }
-            {!editMode &&
+            {editMode &&
                 <div>
-                    <input autoFocus={true} type="text" onBlur={deactiveEditMode} value={status} />
+                    <input autoFocus={true} type="text" 
+                    onBlur={deactiveEditMode} 
+                    value={status} 
+                    onChange={changeStatus}
+                    />
                 </div>
             }
         </div>
