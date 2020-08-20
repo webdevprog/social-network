@@ -24,7 +24,7 @@ const appReducer = (state = initialState, action) => {
 export const initializeSuccess = (initialize) => ({ type: INITIALIZE_SUCCESS, initialize });
 
 export const initialize = () => (dispatch) => {
-    debugger
+
     let promise = dispatch(authUserThunkCreater());
 
     promise.then(()=> {
