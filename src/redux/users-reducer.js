@@ -1,11 +1,11 @@
 import { usersAPI } from "../api/api";
 
-const FOLLOW_TOGGLE = 'FOLLOW-TOGGLE';
-const SET_USERS = 'SET-USERS';
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
-const GET_TOTAL_USERS = 'GET-TOTAL-USERS';
-const TOGGLE_FETCHING = 'TOGGLE-FETCHING ';
-const FOLLOWING_PROCESS = 'FOLLOWING-PROCESS '
+const FOLLOW_TOGGLE = 'users/FOLLOW_TOGGLE';
+const SET_USERS = 'users/SET_USERS';
+const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE';
+const GET_TOTAL_USERS = 'users/GET_TOTAL_USERS';
+const TOGGLE_FETCHING = 'users/TOGGLE_FETCHING ';
+const FOLLOWING_PROCESS = 'users/FOLLOWING_PROCESS '
 
 let initialState = {
     users: [],
@@ -74,37 +74,23 @@ export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, curren
 export const toggleFetching = (isFetching) => ({ type: TOGGLE_FETCHING, isFetching });
 export const followingProcess = (followingInProcess, userID) => ({ type: FOLLOWING_PROCESS, followingInProcess, userID });
 
-export const getUsersThunkCreater = (page, pageSize) => {
-    return (dispatch) => {
-        dispatch(toggleFetching(false));
-        usersAPI.getUsers(page, pageSize).then(data => {
-            dispatch(toggleFetching(true));
-            dispatch(setUsers(data.items));
-            dispatch(getTotalUsers(data.totalCount));
-        });
+export const getUsersThunkCreater = (page, pageSize) => async (dispatch) => {
+    dispatch(toggleFetching(false));
+    let data = await usersAPI.getUsers(page, pageSize);
+    dispatch(toggleFetching(true));
+    dispatch(setUsers(data.items));
+    dispatch(getTotalUsers(data.totalCount));
 
-        dispatch(setCurrentPage(page));
-    }
+    dispatch(setCurrentPage(page));
 }
 
-export const followToggleThunkCreater = (followed, userId) => {
-    return (dispatch) => {
-        dispatch(followingProcess(false, userId));
-        if (!followed) {
-            usersAPI.follow(userId).then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(followToggle(userId));
-                    dispatch(followingProcess(true, userId));
-                }
-            });
-        } else {
-            usersAPI.unfollow(userId).then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(followToggle(userId));
-                    dispatch(followingProcess(true, userId));
-                }
-            });
-        }
+export const followToggleThunkCreater = (followed, userId) => async (dispatch) => {
+    dispatch(followingProcess(false, userId));
+    let data = await !followed ? usersAPI.follow(userId) : usersAPI.unfollow(userId);
+
+    if (data.resultCode === 0) {
+        dispatch(followToggle(userId));
+        dispatch(followingProcess(true, userId));
     }
 }
 
