@@ -31,9 +31,10 @@ export const authUserThunkCreater = () => async (dispatch) => {
     if (response.data.resultCode === 0) {
         let { id, email, login } = response.data.data;
         dispatch(setAuthUserData(id, login, email, true));
+        return response;
     }
 
-    return response;
+ 
 }
 
 export const loginUser = (dataLogin) => async (dispatch) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import './App.scss';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Setting from './components/Setting/Setting';
@@ -14,7 +14,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { initialize } from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
-import withAuthRedirect from './hoc/withAuthRedirect';
 
 class App extends React.Component {
     componentDidMount() {
@@ -25,7 +24,6 @@ class App extends React.Component {
         if (this.props.initializeApp) return <Preloader />
 
         return (
-            <BrowserRouter>
                 <div className="app-wrapper">
                     <HeaderContainer />
                     <NavbarContainer />
@@ -39,7 +37,6 @@ class App extends React.Component {
                         <Route path="/login" component={Login} />
                     </div>
                 </div>
-            </BrowserRouter>
         );
     }
 }
@@ -51,5 +48,6 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {initialize})
+    connect(mapStateToProps, {initialize}),
+    withRouter
 )(App);
