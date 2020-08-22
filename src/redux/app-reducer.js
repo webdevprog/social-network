@@ -26,7 +26,7 @@ export const initializeSuccess = (initialize) => ({ type: INITIALIZE_SUCCESS, in
 export const initialize = () => (dispatch) => {
 
     let promise = dispatch(authUserThunkCreater());
-
+    
     promise.then(()=> {
         dispatch(initializeSuccess(false))
     })

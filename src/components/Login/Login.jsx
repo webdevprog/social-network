@@ -8,10 +8,12 @@ import { Input, createField } from '../common/FormControls/FormControls';
 import { required } from '../../utils/validators';
 
 class LoginContainer extends React.Component {
-    
+    onSubmit = (formData) => {
+        this.props.loginUser(formData);
+    }
     render() {
         return (
-            <Login onLogin={this.props.loginUser} />
+            <Login onLogin={this.onSubmit} />
         )
     }
 }
