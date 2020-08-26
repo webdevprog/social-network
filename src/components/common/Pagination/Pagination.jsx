@@ -7,7 +7,7 @@ const Pagination = (props) => {
 
     let pageCount = Math.ceil(props.totalPages / props.pageSize);
     let start = props.pageSize * currentPage;
-    let endNum = (pageCount + start + props.pageSize - pageCount);
+    let endNum = Math.ceil((currentPage+1) * props.pageSize);
     let endPoint = endNum >= pageCount ? pageCount : endNum;
     let pages = [];
 
