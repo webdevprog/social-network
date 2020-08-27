@@ -1,22 +1,25 @@
-import React from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import React, { lazy } from 'react';
+import { Route, withRouter, Switch } from 'react-router-dom';
 import './App.scss';
 import store from './redux/redux-store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from "react-router-dom";
-import ProfileContainer from './components/Profile/ProfileContainer';
+import withSuspense from './hoc/withSuspense';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { initialize } from './redux/app-reducer';
 import Setting from './components/Setting/Setting';
 import News from './components/News/News';
 import Music from './components/Music/Music';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { initialize } from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
+
+
+const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
+const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
 
 class App extends React.Component {
     componentDidMount() {
@@ -31,8 +34,8 @@ class App extends React.Component {
                 <HeaderContainer />
                 <NavbarContainer />
                 <div className="app-wrapper-content">
-                    <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-                    <Route path="/dialogs" render={() => <DialogsContainer />} />
+                    <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)} />
+                    <Route path="/dialogs" render={withSuspense(DialogsContainer)} />
                     <Route path="/users" render={() => <UsersContainer />} />
                     <Route path="/news" component={News} />
                     <Route path="/music" component={Music} />
@@ -51,8 +54,8 @@ let mapStateToProps = (state) => {
 }
 
 let AppContainer = compose(
-    withRouter,
-    connect(mapStateToProps, { initialize })
+    connect(mapStateToProps, { initialize }),
+    withRouter
 )(App);
 
 const SocialNetwork = (props) => {

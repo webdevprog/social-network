@@ -4,7 +4,7 @@ const INITIALIZE_SUCCESS = 'INITIALIZE_SUCCESS';
 
 
 let initialState = {
-    initialize: true
+    initialize: false
 }
 
 const appReducer = (state = initialState, action) => {
@@ -24,10 +24,8 @@ const appReducer = (state = initialState, action) => {
 export const initializeSuccess = (initialize) => ({ type: INITIALIZE_SUCCESS, initialize });
 
 export const initialize = () => (dispatch) => {
-
     let promise = dispatch(authUserThunkCreater());
-    
-    promise.then(()=> {
+    Promise.all([promise]).then(() => {
         dispatch(initializeSuccess(false))
     })
 }
