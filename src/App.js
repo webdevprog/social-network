@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { Route, withRouter, Switch } from 'react-router-dom';
+import { Route, withRouter, Switch, HashRouter } from 'react-router-dom';
 import './App.scss';
 import store from './redux/redux-store';
 import { Provider } from 'react-redux';
@@ -60,11 +60,11 @@ let AppContainer = compose(
 
 const SocialNetwork = (props) => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <AppContainer />
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     );
 };
 
