@@ -45,8 +45,19 @@ export const profileAPI = {
     getStatusProfile(userID) {
         return samuraiAPI.get(`profile/status/${userID}`);
     },
-    
+
     updateStatusProfile(status) {
         return samuraiAPI.put(`profile/status/`, { status });
+    },
+
+    savePhoto(file) {
+        let formData = new FormData();
+        formData.append('image', file);
+
+        return samuraiAPI.put(`profile/photo/`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+        });
     }
 }
