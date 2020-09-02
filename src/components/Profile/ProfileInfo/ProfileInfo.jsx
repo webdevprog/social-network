@@ -24,9 +24,9 @@ const ProfileInfo = (props) => {
         setEditMode(1);
     }
 
-    const saveProfile = (values) => {
+    const saveProfile = async (values) => {
+        await props.saveProfile(values);
         setEditMode(0);
-        console.log(values)
     }
 
     return (
@@ -38,19 +38,30 @@ const ProfileInfo = (props) => {
                         src={profile.photos.large ? profile.photos.large : "https://cdn.pixabay.com/photo/2020/02/23/11/36/landscape-4873098_960_720.jpg"}
                         alt={profile.fullName}
                     />
-                    {!props.owner && <input type="file" onChange={onChangePhoto} />}
-                    <ProfileStatusWithHook status={props.status} updateStatus={props.updateStatusProfile} />
+                    {props.owner && <input type="file" onChange={onChangePhoto} />}
+                    {props.owner
+                        ? <ProfileStatusWithHook status={props.status} updateStatus={props.updateStatusProfile} />
+                        : props.status
+                    }
+
                 </div>
                 <div className={cls.userInfo}>
                     {editMode
                         ?
                         <div>
-                            <ProfileEditData profile={profile} onSubmit={saveProfile} />
+                            <ProfileEditData
+                                profile={profile}
+                                onSubmit={saveProfile}
+                                initialValues={profile}
+                            />
                         </div>
                         :
                         <div>
-                            {editMode}<button onClick={onSetEditMode}>Edit</button>
-                            <ProfileData profile={profile} />
+                            <ProfileData
+                                profile={profile}
+                                owner={props.owner}
+                                onSetEditMode={onSetEditMode}
+                            />
                         </div>
                     }
                 </div>
@@ -66,9 +77,10 @@ const Contacts = (props) => {
     );
 }
 
-const ProfileData = ({ profile }) => {
+const ProfileData = ({ profile, owner, onSetEditMode }) => {
     return (
         <div>
+            {owner && <button onClick={onSetEditMode}>Edit</button>}
             <div>
                 <b>Full Name</b>: {profile.fullName}
             </div>
@@ -76,11 +88,13 @@ const ProfileData = ({ profile }) => {
                 <b>Looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}
             </div>
             {profile.lookingForAJob
-                &&
-                <div>
+                && <div>
                     <b>Skills</b>: {profile.lookingForAJobDescription}
                 </div>
             }
+            <div>
+                <b>About Me</b>: {profile.AboutMe}
+            </div>
             <div>
                 <div><b>Contacts:</b></div>
                 {Object.keys(profile.contacts).map(key => {
@@ -96,8 +110,9 @@ let ProfileEditData = ({ profile, handleSubmit }) => {
         <form onSubmit={handleSubmit}>
             <button>Save</button>
             {createField("", "fullName", "input", [], {})}
-            {createField("", "lookingForAJob", "input", [], {type: 'checkbox'})}
+            {createField("", "lookingForAJob", "input", [], { type: 'checkbox' })}
             {createField("", "lookingForAJobDescription", "textarea", [])}
+            {createField("", "AboutMe", "textarea", [])}
             {Object.keys(profile.contacts).map(key => {
                 return createField(key, `contacts.${key}`, "input", [])
             })}
